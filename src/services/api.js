@@ -2,7 +2,7 @@ const axios = require('axios')
 
 // FIXME Don't use env variable as they are embedded into the build
 async function getPassage(query) {
-  return await axios.get('https://api.esv.org/v3/passage/text/', {
+  const response = await axios.get('https://api.esv.org/v3/passage/text/', {
     headers: { 'Authorization': `Token ${process.env.REACT_APP_ESV_AUTHORISATION_TOKEN}` },
     params: {
       'q': query,
@@ -17,6 +17,7 @@ async function getPassage(query) {
     },
     timeout: 1000,
   })
+  return response.data.passages[0]
 }
 
 export { getPassage }

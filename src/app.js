@@ -1,33 +1,24 @@
-import React, { useState, useEffect } from 'react'
-import { api } from './services'
+import React, { useState } from 'react'
+import { ThemeProvider } from '@material-ui/styles'
+import { createMuiTheme } from '@material-ui/core/styles'
+import Search from './search'
 import './app.css'
 
-const { getPassage } = api
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+  },
+})
 
 function App() {
   const [passage, setPassage] = useState('')
-  const [isError, setIsError] = useState(false)
-
-  useEffect(() => {
-    const fetch = async () => {
-      setIsError(false)
-
-      try {
-        const response = await getPassage('Colossians 1:15-20')
-        setPassage(response.data.passages[0])
-      } catch {
-        setIsError(true)
-      }
-    }
-    fetch()
-  }, [])
 
   return (
     <div className="app">
-      <header className="app-header">
-        {isError && <p>Failed to fetch that Bible passage</p>}
+      <ThemeProvider theme={theme}>
+        <Search handleSearch={setPassage} />
         {passage}
-      </header>
+      </ThemeProvider>
     </div>
   )
 }

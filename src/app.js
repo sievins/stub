@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { ThemeProvider } from '@material-ui/styles'
 import { createMuiTheme } from '@material-ui/core/styles'
+import Passage from './passage'
 import Search from './search'
 import './app.css'
 
@@ -17,7 +18,7 @@ function App() {
     <div className="app">
       <ThemeProvider theme={theme}>
         <Search handleSearch={setPassage} />
-        {passage}
+        <Passage passage={passage}/>
       </ThemeProvider>
     </div>
   )

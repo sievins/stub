@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
+import './passage.css'
 
 const useStyles = makeStyles(theme => ({
   passage: {
@@ -9,18 +10,26 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function Passage({ passage }) {
+function Passage({ passage, handlePassageRef }) {
   const classes = useStyles()
+  const passageRef = useRef()
+
+  useEffect(() => {
+    handlePassageRef(passageRef.current)
+  }, [passageRef, handlePassageRef])
 
   return (
     <div className={classes.passage}>
-      {passage}
+      <div ref={passageRef} className="print">
+        {passage}
+      </div>
     </div>
   )
 }
 
 Passage.propTypes = {
   passage: PropTypes.string.isRequired,
+  handlePassageRef: PropTypes.func.isRequired,
 }
 
 export default Passage

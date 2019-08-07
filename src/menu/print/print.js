@@ -1,27 +1,44 @@
 import React  from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
+import PropTypes from 'prop-types'
+import ReactToPrint from 'react-to-print'
+import MaterialButton from '@material-ui/core/Button'
 
-const useStyles = makeStyles(theme => ({
+// Cannot use theme because ReactToPrint renders the Button in a callback and you are not allowed to use hooks in callbacks
+const classes = {
   button: {
     position: 'absolute',
-    marginTop: theme.spacing(3) / 2,
-    right: theme.spacing(10),
+    marginTop: '12px',
+    right: '80px',
   },
-}))
+}
 
-function Print() {
-  const classes = useStyles()
-
+function buildButton(isPassage) {
   return (
-    <Button
+    <MaterialButton
       variant="contained"
       color="primary"
-      className={classes.button}
+      style={classes.button}
+      disabled={!isPassage}
     >
       Print
-    </Button>
+    </MaterialButton>
   )
+}
+
+const Print = ({ passageRef, isPassage }) => {
+  const button = buildButton(isPassage)
+
+  return (
+    <ReactToPrint
+      trigger={() => button}
+      content={() => passageRef}
+    />
+  )
+}
+
+Print.propTypes = {
+  passageRef: PropTypes.object,
+  isPassage: PropTypes.bool.isRequired,
 }
 
 export default Print

@@ -12,19 +12,21 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function Menu({ handleSearch }) {
+function Menu({ handleSearch, passageRef, isPassage }) {
   const classes = useStyles()
 
   return (
     <div className={classes.menu}>
       <Search handleSearch={handleSearch} />
-      <Print />
+      <Print passageRef={passageRef} isPassage={isPassage} />
     </div>
   )
 }
 
 Menu.propTypes = {
   handleSearch: PropTypes.func.isRequired,
+  passageRef: PropTypes.object,
+  isPassage: PropTypes.bool.isRequired,
 }
 
 export default Menu

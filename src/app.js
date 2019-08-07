@@ -14,13 +14,14 @@ const theme = createMuiTheme({
 
 function App() {
   const [passage, setPassage] = useState('')
+  const [passageRef, setPassageRef] = useState(null)
 
   return (
     <div className="app">
       <ThemeProvider theme={theme}>
         <Title />
-        <Menu handleSearch={setPassage} />
-        <Passage passage={passage} />
+        <Menu handleSearch={setPassage} passageRef={passageRef} isPassage={!!passage} />
+        <Passage passage={passage} handlePassageRef={setPassageRef} />
       </ThemeProvider>
     </div>
   )

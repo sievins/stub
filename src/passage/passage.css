@@ -1,0 +1,13 @@
+.print {
+  line-height: 2;
+}
+
+@media print {
+  @page {
+    size: auto;
+    margin: 25mm;
+  }
+  .print {
+    line-height: 3;
+  }
+}

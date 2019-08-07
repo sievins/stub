@@ -3,7 +3,7 @@ import { ThemeProvider } from '@material-ui/styles'
 import { createMuiTheme } from '@material-ui/core/styles'
 import Title from './title'
 import Passage from './passage'
-import Search from './search'
+import Menu from './menu'
 import './app.css'
 
 const theme = createMuiTheme({
@@ -19,7 +19,7 @@ function App() {
     <div className="app">
       <ThemeProvider theme={theme}>
         <Title />
-        <Search handleSearch={setPassage} />
+        <Menu handleSearch={setPassage} />
         <Passage passage={passage} />
       </ThemeProvider>
     </div>

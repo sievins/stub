@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import { api } from '../services'
+import { api } from '../../services'
 
 const { getPassage } = api
 
@@ -11,7 +11,6 @@ const useStyles = makeStyles(theme => ({
   search: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
   },
   textField: {
     marginLeft: theme.spacing(1),

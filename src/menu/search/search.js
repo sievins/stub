@@ -10,7 +10,6 @@ const { getPassage } = api
 const useStyles = makeStyles(theme => ({
   search: {
     display: 'flex',
-    alignItems: 'center',
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -18,25 +17,28 @@ const useStyles = makeStyles(theme => ({
     width: 200,
   },
   button: {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(3.5),
+    height: 'fit-content',
   },
 }))
 
 function Search({ handleSearch }) {
   const [query, setQuery] = useState('')
   const [isFetching, setIsFetching] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const classes = useStyles()
+
+  const computeErrorMessage = () => `Failed to find "${query}"`
 
   const fetch = async () => {
     if (query) {
-      const errorMessage = `Failed to find "${query}"`
-
       setIsFetching(true)
       try {
         const passage = await getPassage(query)
-        handleSearch(passage || errorMessage)
+        setErrorMessage(Boolean(passage) ? '' : computeErrorMessage())
+        handleSearch(passage)
       } catch {
-        handleSearch(errorMessage)
+        setErrorMessage(computeErrorMessage())
       }
       setIsFetching(false)
     }
@@ -48,6 +50,8 @@ function Search({ handleSearch }) {
         onChange={(event) => setQuery(event.target.value)}
         onKeyPress={(event) => event.key === 'Enter' && fetch()}
         disabled={isFetching}
+        error={Boolean(errorMessage)}
+        helperText={errorMessage}
         id="standard-search"
         label="Enter passage"
         type="search"

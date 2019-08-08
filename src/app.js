@@ -20,7 +20,7 @@ function App() {
     <div className="app">
       <ThemeProvider theme={theme}>
         <Title />
-        <Menu handleSearch={setPassage} passageRef={passageRef} isPassage={!!passage} />
+        <Menu handleSearch={setPassage} passageRef={passageRef} isPassage={Boolean(passage)} />
         <Passage passage={passage} handlePassageRef={setPassageRef} />
       </ThemeProvider>
     </div>

@@ -7,7 +7,6 @@ import Print from './print'
 const useStyles = makeStyles(theme => ({
   menu: {
     display: 'flex',
-    alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
   },

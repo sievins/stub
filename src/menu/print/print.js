@@ -7,23 +7,21 @@ import MaterialButton from '@material-ui/core/Button'
 const classes = {
   button: {
     position: 'absolute',
-    marginTop: '12px',
+    marginTop: '28px',
     right: '80px',
   },
 }
 
-function buildButton(isPassage) {
-  return (
-    <MaterialButton
-      variant="contained"
-      color="primary"
-      style={classes.button}
-      disabled={!isPassage}
-    >
-      Print
-    </MaterialButton>
-  )
-}
+const buildButton = (isPassage) => (
+  <MaterialButton
+    variant="contained"
+    color="primary"
+    style={classes.button}
+    disabled={!isPassage}
+  >
+    Print
+  </MaterialButton>
+)
 
 const Print = ({ passageRef, isPassage }) => {
   const button = buildButton(isPassage)

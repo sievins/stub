@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import Search from './search'
-import Print from './print'
+import Actions from './actions'
 
 const useStyles = makeStyles(theme => ({
   menu: {
@@ -18,7 +18,7 @@ function Menu({ handleSearch, passageRef, isPassage }) {
   return (
     <div className={classes.menu}>
       <Search handleSearch={handleSearch} />
-      <Print passageRef={passageRef} isPassage={isPassage} />
+      <Actions passageRef={passageRef} isPassage={isPassage} />
     </div>
   )
 }

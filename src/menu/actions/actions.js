@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import ReactToPrint from 'react-to-print'
 import MaterialButton from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import SettingsIcon from '@material-ui/icons/Settings'
+import Settings from './settings'
 
 // Cannot use theme because ReactToPrint renders the Button in a callback and you are not allowed to use hooks in callbacks
 const classes = {
@@ -32,13 +33,20 @@ const buildButton = (isPassage) => (
 )
 
 const Actions = ({ passageRef, isPassage }) => {
+  const [open, setOpen] = useState(false)
   const button = buildButton(isPassage)
 
   return (
     <div style={classes.actions}>
-      <IconButton color="primary" style={classes.settings} aria-label="open settings dialog">
+      <IconButton
+        onClick={() => setOpen(true)}
+        color="primary"
+        style={classes.settings}
+        aria-label="open settings dialog"
+      >
         <SettingsIcon />
       </IconButton>
+      <Settings handleClose={() => {setOpen(false)}} open={open} />
       <ReactToPrint
         trigger={() => button}
         content={() => passageRef}

@@ -81,10 +81,10 @@ function Settings({ open, handleClose }) {
         </FormGroup>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleCancel} color="secondary">
+        <Button onClick={handleCancel} variant="contained" color="secondary">
           Cancel
         </Button>
-        <Button onClick={handleConfirm} color="primary">
+        <Button onClick={handleConfirm} variant="contained" color="primary">
           Confirm
         </Button>
       </DialogActions>

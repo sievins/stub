@@ -18,11 +18,12 @@ function Passage({ passage, handlePassageRef, settings }) {
     handlePassageRef(passageRef.current)
   }, [passageRef, handlePassageRef])
 
+  const className = settings.withBigMargins ? 'print margin' : 'print'
   const text = settings.withVerseNumbers ? passage.withVerseNumbers : passage.withoutVerseNumbers
 
   return (
     <div className={classes.passage}>
-      <div ref={passageRef} className="print">
+      <div ref={passageRef} className={className}>
         {text}
       </div>
     </div>

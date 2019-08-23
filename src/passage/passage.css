@@ -2,6 +2,10 @@
   line-height: 2;
 }
 
+.print.margin {
+  margin-right: 125mm;
+}
+
 @media print {
   @page {
     size: auto;
@@ -9,5 +13,8 @@
   }
   .print {
     line-height: 3;
+  }
+  .print.margin {
+    margin-right: 50mm;
   }
 }

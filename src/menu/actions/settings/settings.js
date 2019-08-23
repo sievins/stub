@@ -65,7 +65,7 @@ function Settings({ open, handleClose }) {
                 color="primary"
               />
             }
-            label="Extra large margins"
+            label="Extra large right margin"
           />
           <FormControlLabel
             control={

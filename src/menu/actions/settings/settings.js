@@ -8,10 +8,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
 import Button from '@material-ui/core/Button'
 
-const init = {
-  verseNumbers: false,
-  extraLargeMargins: false,
-  reference: false,
+export const init = {
+  withVerseNumbers: false,
+  withBigMargins: false,
+  withReference: false,
 }
 
 function Settings({ open, handleClose }) {
@@ -48,9 +48,9 @@ function Settings({ open, handleClose }) {
           <FormControlLabel
             control={
               <Switch
-                checked={settings.verseNumbers}
-                onChange={handleChange('verseNumbers')}
-                value="verseNumbers"
+                checked={settings.withVerseNumbers}
+                onChange={handleChange('withVerseNumbers')}
+                value="withVerseNumbers"
                 color="primary"
               />
             }
@@ -59,9 +59,9 @@ function Settings({ open, handleClose }) {
           <FormControlLabel
             control={
               <Switch
-                checked={settings.extraLargeMargins}
-                onChange={handleChange('extraLargeMargins')}
-                value="extraLargeMargins"
+                checked={settings.withBigMargins}
+                onChange={handleChange('withBigMargins')}
+                value="withBigMargins"
                 color="primary"
               />
             }
@@ -70,9 +70,9 @@ function Settings({ open, handleClose }) {
           <FormControlLabel
             control={
               <Switch
-                checked={settings.reference}
-                onChange={handleChange('reference')}
-                value="reference"
+                checked={settings.withReference}
+                onChange={handleChange('withReference')}
+                value="withReference"
                 color="primary"
               />
             }

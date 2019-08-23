@@ -1,1 +1,1 @@
-export { default } from './settings'
+export { default, init } from './settings'

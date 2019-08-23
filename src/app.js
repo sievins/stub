@@ -3,8 +3,10 @@ import { ThemeProvider } from '@material-ui/styles'
 import { createMuiTheme } from '@material-ui/core/styles'
 import Title from './title'
 import Passage from './passage'
-import Menu from './menu'
+import Menu, { actions } from './menu'
 import './app.css'
+
+const { init } = actions.settings
 
 const theme = createMuiTheme({
   palette: {
@@ -13,15 +15,16 @@ const theme = createMuiTheme({
 })
 
 function App() {
-  const [passage, setPassage] = useState('')
+  const [passage, setPassage] = useState({ withVerseNumbers: '', withoutVerseNumbers: '' })
   const [passageRef, setPassageRef] = useState(null)
+  const [settings, setSettings] = useState(init)
 
   return (
     <div className="app">
       <ThemeProvider theme={theme}>
         <Title />
-        <Menu handleSearch={setPassage} passageRef={passageRef} isPassage={Boolean(passage)} />
-        <Passage passage={passage} handlePassageRef={setPassageRef} />
+        <Menu handleSearch={setPassage} passageRef={passageRef} isPassage={Boolean(passage)} handleSettingsChange={setSettings} />
+        <Passage passage={passage} handlePassageRef={setPassageRef} settings={settings} />
       </ThemeProvider>
     </div>
   )

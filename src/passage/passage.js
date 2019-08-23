@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function Passage({ passage, handlePassageRef }) {
+function Passage({ passage, handlePassageRef, settings }) {
   const classes = useStyles()
   const passageRef = useRef()
 
@@ -18,18 +18,28 @@ function Passage({ passage, handlePassageRef }) {
     handlePassageRef(passageRef.current)
   }, [passageRef, handlePassageRef])
 
+  const text = settings.withVerseNumbers ? passage.withVerseNumbers : passage.withoutVerseNumbers
+
   return (
     <div className={classes.passage}>
       <div ref={passageRef} className="print">
-        {passage}
+        {text}
       </div>
     </div>
   )
 }
 
 Passage.propTypes = {
-  passage: PropTypes.string.isRequired,
+  passage: PropTypes.shape({
+    withVerseNumbers: PropTypes.string.isRequired,
+    withoutVerseNumbers: PropTypes.string.isRequired,
+  }).isRequired,
   handlePassageRef: PropTypes.func.isRequired,
+  settings: PropTypes.shape({
+    withVerseNumbers: PropTypes.bool.isRequired,
+    withBigMargins: PropTypes.bool.isRequired,
+    withReference: PropTypes.bool.isRequired,
+  }).isRequired,
 }
 
 export default Passage

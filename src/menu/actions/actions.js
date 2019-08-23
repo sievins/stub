@@ -32,7 +32,7 @@ const buildButton = (isPassage) => (
   </MaterialButton>
 )
 
-const Actions = ({ passageRef, isPassage }) => {
+const Actions = ({ passageRef, isPassage, handleSettingsChange }) => {
   const [open, setOpen] = useState(false)
   const button = buildButton(isPassage)
 
@@ -46,7 +46,13 @@ const Actions = ({ passageRef, isPassage }) => {
       >
         <SettingsIcon />
       </IconButton>
-      <Settings handleClose={() => {setOpen(false)}} open={open} />
+      <Settings
+        handleClose={(settings) => {
+          setOpen(false)
+          handleSettingsChange(settings)
+        }}
+        open={open}
+      />
       <ReactToPrint
         trigger={() => button}
         content={() => passageRef}
@@ -58,6 +64,7 @@ const Actions = ({ passageRef, isPassage }) => {
 Actions.propTypes = {
   passageRef: PropTypes.object,
   isPassage: PropTypes.bool.isRequired,
+  handleSettingsChange: PropTypes.func.isRequired,
 }
 
 export default Actions

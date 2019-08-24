@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import './passage.css'
 
@@ -10,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function Passage({ passage, handlePassageRef, settings }) {
+function Passage({ passage, title, handlePassageRef, settings }) {
   const classes = useStyles()
   const passageRef = useRef()
 
@@ -19,11 +20,17 @@ function Passage({ passage, handlePassageRef, settings }) {
   }, [passageRef, handlePassageRef])
 
   const className = settings.withBigMargins ? 'print margin' : 'print'
+  const header = settings.withReference ?
+    <Typography variant="h4" gutterBottom>
+      {title}
+    </Typography> :
+    null
   const text = settings.withVerseNumbers ? passage.withVerseNumbers : passage.withoutVerseNumbers
 
   return (
     <div className={classes.passage}>
       <div ref={passageRef} className={className}>
+        {header}
         {text}
       </div>
     </div>
@@ -35,6 +42,7 @@ Passage.propTypes = {
     withVerseNumbers: PropTypes.string.isRequired,
     withoutVerseNumbers: PropTypes.string.isRequired,
   }).isRequired,
+  title: PropTypes.string.isRequired,
   handlePassageRef: PropTypes.func.isRequired,
   settings: PropTypes.shape({
     withVerseNumbers: PropTypes.bool.isRequired,

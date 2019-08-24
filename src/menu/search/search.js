@@ -36,7 +36,7 @@ function Search({ handleSearch }) {
       try {
         const passage = await getPassage(query)
         setErrorMessage(Boolean(passage) ? '' : computeErrorMessage())
-        handleSearch(passage)
+        handleSearch(passage, query)
       } catch {
         setErrorMessage(computeErrorMessage())
       }

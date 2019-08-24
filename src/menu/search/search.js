@@ -35,8 +35,13 @@ function Search({ handleSearch }) {
       setIsFetching(true)
       try {
         const passage = await getPassage(query)
-        setErrorMessage(Boolean(passage) ? '' : computeErrorMessage())
-        handleSearch(passage, query)
+        const isError = Boolean(!passage.withVerseNumbers || !passage.withoutVerseNumbers)
+        if (isError) {
+          setErrorMessage(computeErrorMessage())
+        } else {
+          setErrorMessage('')
+          handleSearch(passage, query)
+        }
       } catch {
         setErrorMessage(computeErrorMessage())
       }

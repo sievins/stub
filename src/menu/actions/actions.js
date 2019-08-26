@@ -47,10 +47,8 @@ const Actions = ({ passageRef, isPassage, handleSettingsChange }) => {
         <SettingsIcon />
       </IconButton>
       <Settings
-        handleClose={(settings) => {
-          setOpen(false)
-          handleSettingsChange(settings)
-        }}
+        handleClose={() => setOpen(false)}
+        handleChange={(settings) => handleSettingsChange(settings)}
         open={open}
       />
       <ReactToPrint

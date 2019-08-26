@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
@@ -14,10 +14,14 @@ export const init = {
   withReference: false,
 }
 
-function Settings({ open, handleClose }) {
+function Settings({ open, handleClose, handleChange }) {
   const [initialSettings, setInitialSettings] = useState(init)
   const [settings, setSettings] = useState(init)
   const [confirmed, setConfirmed] = useState(false)
+
+  useEffect(() => {
+    handleChange(settings)
+  }, [settings, handleChange])
 
   const handleEnter = () => {
     setInitialSettings(settings)
@@ -27,18 +31,18 @@ function Settings({ open, handleClose }) {
     !confirmed && setSettings(initialSettings)
   }
 
-  const handleChange = name => event => {
+  const handleSwitchChange = name => event => {
     setSettings({ ...settings, [name]: event.target.checked })
   }
 
   const handleCancel = () => {
     setConfirmed(false)
-    handleClose(initialSettings)
+    handleClose()
   }
 
   const handleConfirm = () => {
     setConfirmed(true)
-    handleClose(settings)
+    handleClose()
   }
 
   return (
@@ -49,7 +53,7 @@ function Settings({ open, handleClose }) {
             control={
               <Switch
                 checked={settings.withVerseNumbers}
-                onChange={handleChange('withVerseNumbers')}
+                onChange={handleSwitchChange('withVerseNumbers')}
                 value="withVerseNumbers"
                 color="primary"
               />
@@ -60,7 +64,7 @@ function Settings({ open, handleClose }) {
             control={
               <Switch
                 checked={settings.withBigMargins}
-                onChange={handleChange('withBigMargins')}
+                onChange={handleSwitchChange('withBigMargins')}
                 value="withBigMargins"
                 color="primary"
               />
@@ -71,7 +75,7 @@ function Settings({ open, handleClose }) {
             control={
               <Switch
                 checked={settings.withReference}
-                onChange={handleChange('withReference')}
+                onChange={handleSwitchChange('withReference')}
                 value="withReference"
                 color="primary"
               />
@@ -95,6 +99,7 @@ function Settings({ open, handleClose }) {
 Settings.propTypes = {
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 }
 
 export default Settings

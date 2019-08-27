@@ -17,15 +17,16 @@ const fetch = async (query, includeVerseNumbers) => {
     },
     timeout: 1000,
   })
-  return response.data.passages[0]
+  return response.data
 }
 
 const getPassage = async (query) => {
   const [withVerseNumbers, withoutVerseNumbers] = await Promise.all([fetch(query, true), fetch(query, false)])
 
   return {
-    withVerseNumbers,
-    withoutVerseNumbers,
+    withVerseNumbers: withVerseNumbers.passages[0],
+    withoutVerseNumbers: withoutVerseNumbers.passages[0],
+    query: withVerseNumbers.query,
   }
 }
 

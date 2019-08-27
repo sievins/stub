@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function Passage({ passage, title, handlePassageRef, settings }) {
+function Passage({ passage, handlePassageRef, settings }) {
   const classes = useStyles()
   const passageRef = useRef()
 
@@ -22,7 +22,7 @@ function Passage({ passage, title, handlePassageRef, settings }) {
   const className = settings.withBigMargins ? 'print margin' : 'print'
   const header = settings.withReference ?
     <Typography variant="h4" gutterBottom>
-      {title}
+      {passage.query}
     </Typography> :
     null
   const text = settings.withVerseNumbers ? passage.withVerseNumbers : passage.withoutVerseNumbers
@@ -41,8 +41,8 @@ Passage.propTypes = {
   passage: PropTypes.shape({
     withVerseNumbers: PropTypes.string.isRequired,
     withoutVerseNumbers: PropTypes.string.isRequired,
+    query: PropTypes.string.isRequired,
   }).isRequired,
-  title: PropTypes.string.isRequired,
   handlePassageRef: PropTypes.func.isRequired,
   settings: PropTypes.shape({
     withVerseNumbers: PropTypes.bool.isRequired,

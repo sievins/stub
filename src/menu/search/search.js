@@ -40,7 +40,7 @@ function Search({ handleSearch }) {
           setErrorMessage(computeErrorMessage())
         } else {
           setErrorMessage('')
-          handleSearch(passage, query)
+          handleSearch(passage)
         }
       } catch {
         setErrorMessage(computeErrorMessage())

@@ -15,8 +15,7 @@ const theme = createMuiTheme({
 })
 
 function App() {
-  const [passage, setPassage] = useState({ withVerseNumbers: '', withoutVerseNumbers: '' })
-  const [title, setTitle] = useState('')
+  const [passage, setPassage] = useState({ withVerseNumbers: '', withoutVerseNumbers: '', query: '' })
   const [passageRef, setPassageRef] = useState(null)
   const [settings, setSettings] = useState(init)
 
@@ -25,15 +24,12 @@ function App() {
       <ThemeProvider theme={theme}>
         <Title />
         <Menu
-          handleSearch={(p, t) => {
-            setPassage(p)
-            setTitle(t)
-          }}
+          handleSearch={setPassage}
           passageRef={passageRef}
           isPassage={Boolean(passage)}
           handleSettingsChange={setSettings}
         />
-        <Passage passage={passage} title={title} handlePassageRef={setPassageRef} settings={settings} />
+        <Passage passage={passage} handlePassageRef={setPassageRef} settings={settings} />
       </ThemeProvider>
     </div>
   )

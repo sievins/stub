@@ -17,4 +17,7 @@
   .print.margin {
     margin-right: 50mm;
   }
+  .header {
+    font-size: 1.5rem !important;
+  }
 }

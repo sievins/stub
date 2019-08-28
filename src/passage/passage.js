@@ -21,7 +21,7 @@ function Passage({ passage, handlePassageRef, settings }) {
 
   const className = settings.withBigMargins ? 'print margin' : 'print'
   const header = settings.withReference ?
-    <Typography variant="h4" gutterBottom>
+    <Typography variant="h4" gutterBottom className="header">
       {passage.query}
     </Typography> :
     null

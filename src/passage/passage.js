@@ -19,7 +19,7 @@ function Passage({ passage, handlePassageRef, settings }) {
     handlePassageRef(passageRef.current)
   }, [passageRef, handlePassageRef])
 
-  const className = settings.withBigMargins ? 'print margin' : 'print'
+  const className = settings.withBigMargins ? 'page margin' : 'page'
   const header = settings.withReference ?
     <Typography variant="h4" gutterBottom className="header">
       {passage.query}

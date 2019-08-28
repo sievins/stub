@@ -1,8 +1,8 @@
-.print {
+.page {
   line-height: 2;
 }
 
-.print.margin {
+.page.margin {
   margin-right: 125mm;
 }
 
@@ -11,10 +11,10 @@
     size: auto;
     margin: 25mm;
   }
-  .print {
+  .page {
     line-height: 3;
   }
-  .print.margin {
+  .page.margin {
     margin-right: 50mm;
   }
   .header {

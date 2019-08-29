@@ -1,6 +1,19 @@
 # StuB
-> Print formatted Bible passages
+> Study the Bible
 
-Print out Bible passages with custom line spacing so there is space to scribble all over the text and study it.
+An SPA for printing out Bible passages. The text has double line spacing and the option for extra large margins, providing space for annotating the text with your notes. 
 
-https://biblegateway.com is a brilliant tool but has some limitations. For example you cannot customise the line spacing. Also it uses different types of white space characters which can result in odd line breaks when copy/pasting the passage into a text editor.
+## Development
+
+### Prerequisites
+
+You need an API key for accessing the ESV's REST services. You can obtain one from https://api.esv.org/account/create-application/.
+
+Create an `.env.local` file at the projects root and add a key called `REACT_APP_ESV_AUTHORISATION_TOKEN`, whose value is the API key.
+
+### Scripts
+
+* `npm start`: Runs the webpack-dev-server.
+* `npm run build`: Builds the static asset for hosting the website.
+* `npm test`: Runs the tests.
+* `npm run eject`: Ejects create-react-app.

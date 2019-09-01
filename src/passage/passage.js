@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const superScriptVerseNumbers = (text) => text.replace(/\[(\d+)]/g, '<sup style="font-size: calc(4px + 1vmin)"  >$1</sup>')
+const superScriptVerseNumbers = (text) => text.replace(/\[(\d+)]\s/g, '<sup style="font-size: calc(4px + 1vmin)"  >$1</sup>&nbsp;')
 const parse = (text) => DOMPurify.sanitize(superScriptVerseNumbers(text))
 
 function Passage({ passage, handlePassageRef, settings }) {

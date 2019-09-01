@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
+import DOMPurify from 'dompurify'
 import './passage.css'
 
 const useStyles = makeStyles(theme => ({
@@ -10,6 +11,9 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(4),
   },
 }))
+
+const superScriptVerseNumbers = (text) => text.replace(/\[(\d+)]/g, '<sup style="font-size: calc(4px + 1vmin)"  >$1</sup>')
+const parse = (text) => DOMPurify.sanitize(superScriptVerseNumbers(text))
 
 function Passage({ passage, handlePassageRef, settings }) {
   const classes = useStyles()
@@ -20,18 +24,21 @@ function Passage({ passage, handlePassageRef, settings }) {
   }, [passageRef, handlePassageRef])
 
   const className = settings.withBigMargins ? 'page margin' : 'page'
+
   const header = settings.withReference ?
     <Typography variant="h4" gutterBottom className="header">
       {passage.query}
     </Typography> :
     null
+
   const text = settings.withVerseNumbers ? passage.withVerseNumbers : passage.withoutVerseNumbers
+  const parsedText = <div dangerouslySetInnerHTML={{__html: parse(text)}}></div>
 
   return (
     <div className={classes.passage}>
       <div ref={passageRef} className={className}>
         {header}
-        {text}
+        {parsedText}
       </div>
     </div>
   )

@@ -9,7 +9,7 @@
 @media print {
   @page {
     size: auto;
-    margin: 25mm;
+    margin: 10mm;
   }
   .page {
     line-height: 3;

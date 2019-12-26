@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function Toggle({checked, handleChange}) {
+function Toggle({ checked, handleChange }) {
   const theme = useContext(ThemeContext)
   const classes = useStyles()
 
@@ -31,9 +31,9 @@ function Toggle({checked, handleChange}) {
       />
       <Typography variant="body1" className={classes.text}>
         {
-          theme.type === 'dark' ?
-            'Dark theme' :
-            'Light theme'
+          theme.type === 'dark'
+            ? 'Dark theme'
+            : 'Light theme'
         }
       </Typography>
     </div>

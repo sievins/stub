@@ -9,7 +9,7 @@ export const themes = {
   light: {
     type: 'light',
     backgroundColor: 'white',
-    color: '#282c34'
+    color: '#282c34',
   },
 }
 

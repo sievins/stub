@@ -36,9 +36,9 @@ function App() {
 
   const toggleTheme = () => {
     setTheme(
-      theme === themes.dark ?
-        themes.light :
-        themes.dark
+      theme === themes.dark
+        ? themes.light
+        : themes.dark,
     )
   }
 

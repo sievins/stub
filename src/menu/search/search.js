@@ -42,7 +42,7 @@ function Search({ handleSearch }) {
           setErrorMessage('')
           handleSearch(passage)
         }
-      } catch {
+      } catch (e) {
         setErrorMessage(computeErrorMessage())
       }
       setIsFetching(false)

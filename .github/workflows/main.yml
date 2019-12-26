@@ -15,6 +15,8 @@ jobs:
         git config --global user.name "Samuel Ievins"
         git remote set-url origin https://sievins:${{ secrets.token }}@github.com/sievins/stub
         yarn install
+        yarn run lint
+        CI=true yarn run test
         yarn run deploy
       env:
         REACT_APP_ESV_AUTHORISATION_TOKEN: ${{ secrets.REACT_APP_ESV_AUTHORISATION_TOKEN }}

@@ -14,5 +14,5 @@ export const parse = (passage, settings) => {
 
   const parsedTest = pipe(addChapterNumbers, superScriptVerseNumbers, DOMPurify.sanitize)(passage.query, text)
 
-  return <div dangerouslySetInnerHTML={{__html: parsedTest}}></div>
+  return <div dangerouslySetInnerHTML={{ __html: parsedTest }}></div>
 }

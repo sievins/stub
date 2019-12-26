@@ -9,7 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 const useStyles = makeStyles(theme => ({
   link: {
     cursor: 'pointer',
-  }
+  },
 }))
 
 function Copyright() {

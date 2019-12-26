@@ -2,13 +2,16 @@
   "name": "stub",
   "version": "0.1.0",
   "description": "Format Bible passages",
+  "homepage": "https://sievins.github.io/stub",
   "repository": "git@github.com:sievins/stub.git",
   "author": "Samuel Ievins <sievins8012@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
+    "build": "react-scripts build",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "dependencies": {
@@ -22,7 +25,9 @@
     "react-scripts": "3.0.1",
     "react-to-print": "^2.3.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gh-pages": "^2.1.1"
+  },
   "eslintConfig": {
     "extends": "react-app"
   },

@@ -1,0 +1,20 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Deploy
+      run: |
+        git config --global user.email "sievins8012@gmail.com"
+        git config --global user.name "Samuel Ievins"
+        git remote set-url origin https://sievins:${{ secrets.token }}@github.com/sievins/stub
+        yarn install
+        yarn run deploy
+      env:
+        REACT_APP_ESV_AUTHORISATION_TOKEN: ${{ secrets.REACT_APP_ESV_AUTHORISATION_TOKEN }}

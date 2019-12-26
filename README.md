@@ -13,7 +13,7 @@ Create an `.env.local` file at the projects root and add a key called `REACT_APP
 
 ### Scripts
 
-* `npm start`: Runs the webpack-dev-server.
-* `npm run build`: Builds the static asset for hosting the website.
-* `npm test`: Runs the tests.
-* `npm run eject`: Ejects create-react-app.
+* `yarn run start`: Runs the webpack-dev-server.
+* `yarn run test`: Runs the tests.
+* `yarn run build`: Builds the static asset.
+* `yarn run deploy`: Deploys the static asset.

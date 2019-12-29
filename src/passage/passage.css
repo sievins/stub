@@ -6,17 +6,28 @@
   margin-right: 125mm;
 }
 
+.page.margin.small {
+  margin-right: 30mm;
+}
+
 @media print {
   @page {
     size: auto;
     margin: 10mm;
   }
+
   .page {
     line-height: 3;
   }
+
   .page.margin {
     margin-right: 50mm;
   }
+
+  .page.margin.small {
+    margin-right: 50mm;
+  }
+
   .header {
     font-size: 1.5rem !important;
   }

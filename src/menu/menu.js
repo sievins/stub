@@ -1,19 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
 import Search from './search'
 import Actions from './actions'
+import { useStyles } from '../hooks'
 
-const useStyles = makeStyles(theme => ({
-  menu: {
+const stylesDelegate = () => ({
+  menu: ({ isSmallScreen }) => ({
     display: 'flex',
     justifyContent: 'center',
     position: 'relative',
-  },
-}))
+    flexDirection: isSmallScreen ? 'column' : null,
+  }),
+})
 
 function Menu({ handleSearch, handleSettingsChange, passageRef, isPassage }) {
-  const classes = useStyles()
+  const classes = useStyles(stylesDelegate)
 
   return (
     <div className={classes.menu}>

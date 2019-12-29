@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { api } from '../../services'
+import { useStyles } from '../../hooks'
 
 const { getPassage } = api
 
-const useStyles = makeStyles(theme => ({
-  search: {
+const stylesDelegate = (theme) => ({
+  search: ({ isSmallScreen }) => ({
     display: 'flex',
-  },
+    justifyContent: isSmallScreen ? 'flex-start' : null,
+    marginLeft: isSmallScreen ? theme.spacing(1) : null,
+  }),
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
@@ -20,13 +22,14 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(3.5),
     height: 'fit-content',
   },
-}))
+})
 
 function Search({ handleSearch }) {
   const [query, setQuery] = useState('')
   const [isFetching, setIsFetching] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-  const classes = useStyles()
+
+  const classes = useStyles(stylesDelegate)
 
   const computeErrorMessage = () => `Failed to find "${query}"`
 

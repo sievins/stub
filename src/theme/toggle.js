@@ -2,24 +2,24 @@ import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import Switch from '@material-ui/core/Switch'
 import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
+import { useStyles } from '../hooks'
 import { ThemeContext } from './theme'
 
-const useStyles = makeStyles((theme) => ({
-  toggle: {
+const stylesDelegate = (theme) => ({
+  toggle: ({ isSmallScreen }) => ({
     position: 'absolute',
     display: 'inline-flex',
-    left: theme.spacing(10),
-    top: theme.spacing(2),
-  },
+    left: theme.spacing(isSmallScreen ? 0.5 : 10),
+    top: theme.spacing(isSmallScreen ? 0.5 : 2),
+  }),
   text: {
     margin: 'auto',
   },
-}))
+})
 
 function Toggle({ checked, handleChange }) {
   const theme = useContext(ThemeContext)
-  const classes = useStyles()
+  const classes = useStyles(stylesDelegate)
 
   return (
     <div className={classes.toggle}>

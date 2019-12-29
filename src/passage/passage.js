@@ -1,26 +1,34 @@
 import React, { useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
 import { parse } from './parser'
+import { useScreenSize, useStyles } from '../hooks'
 import './passage.css'
 
-const useStyles = makeStyles(theme => ({
-  passage: {
-    margin: theme.spacing(10),
+const stylesDelegate = (theme) => ({
+  passage: ({ isSmallScreen }) => ({
+    margin: isSmallScreen ? theme.spacing(2) : theme.spacing(10),
     marginTop: theme.spacing(4),
-  },
-}))
+  }),
+})
+
+const createClassName = ({ withMargin, withSmall }) => {
+  let className = 'page'
+  withMargin && (className = className + ' margin')
+  withSmall && (className = className + ' small')
+  return className
+}
 
 function Passage({ passage, handlePassageRef, settings }) {
-  const classes = useStyles()
+  const classes = useStyles(stylesDelegate)
+  const isSmallScreen = useScreenSize()
   const passageRef = useRef()
 
   useEffect(() => {
     handlePassageRef(passageRef.current)
   }, [passageRef, handlePassageRef])
 
-  const className = settings.withBigMargins ? 'page margin' : 'page'
+  const className = createClassName({ withMargin: settings.withBigMargins, withSmall: isSmallScreen })
 
   const header = settings.withReference
     ? (

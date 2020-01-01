@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/stub/static/css/main.9b2813e1.chunk.css",
-    "main.js": "/stub/static/js/main.42974acc.chunk.js",
-    "main.js.map": "/stub/static/js/main.42974acc.chunk.js.map",
+    "main.js": "/stub/static/js/main.54d0a277.chunk.js",
+    "main.js.map": "/stub/static/js/main.54d0a277.chunk.js.map",
     "runtime~main.js": "/stub/static/js/runtime~main.cbda3759.js",
     "runtime~main.js.map": "/stub/static/js/runtime~main.cbda3759.js.map",
-    "static/js/2.fcd019db.chunk.js": "/stub/static/js/2.fcd019db.chunk.js",
-    "static/js/2.fcd019db.chunk.js.map": "/stub/static/js/2.fcd019db.chunk.js.map",
+    "static/js/2.857025c3.chunk.js": "/stub/static/js/2.857025c3.chunk.js",
+    "static/js/2.857025c3.chunk.js.map": "/stub/static/js/2.857025c3.chunk.js.map",
     "index.html": "/stub/index.html",
-    "precache-manifest.8fc6e01284b886589e256744b3fdb31f.js": "/stub/precache-manifest.8fc6e01284b886589e256744b3fdb31f.js",
+    "precache-manifest.72049fcec2b80d3a2be3e3d93b875aba.js": "/stub/precache-manifest.72049fcec2b80d3a2be3e3d93b875aba.js",
     "service-worker.js": "/stub/service-worker.js",
     "static/css/main.9b2813e1.chunk.css.map": "/stub/static/css/main.9b2813e1.chunk.css.map"
   }

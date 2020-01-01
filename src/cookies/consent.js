@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import Snackbar from '@material-ui/core/Snackbar'
 import SnackbarContent from '@material-ui/core/SnackbarContent'
 import { CookieContext } from './context'
-import { set as setCookies } from './service'
 import { useStyles } from '../hooks'
 
 const styleDelegate = (theme) => ({
@@ -19,7 +19,7 @@ const styleDelegate = (theme) => ({
   }),
 })
 
-function Consent() {
+function Consent({ handleConsent }) {
   const { consented } = useContext(CookieContext)
   const [open, setOpen] = useState(!consented)
   const classes = useStyles(styleDelegate)
@@ -33,8 +33,8 @@ function Consent() {
       return
     }
 
-    setCookies()
     setOpen(false)
+    handleConsent()
   }
 
   return (
@@ -54,6 +54,10 @@ function Consent() {
       />
     </Snackbar>
   )
+}
+
+Consent.propTypes = {
+  handleConsent: PropTypes.func,
 }
 
 export default Consent

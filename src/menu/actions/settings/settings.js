@@ -7,6 +7,7 @@ import FormGroup from '@material-ui/core/FormGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
 import Button from '@material-ui/core/Button'
+import { cookieService } from '../../../cookies'
 
 export const init = {
   withVerseNumbers: false,
@@ -16,7 +17,7 @@ export const init = {
 
 function Settings({ open, handleClose, handleChange }) {
   const [initialSettings, setInitialSettings] = useState(init)
-  const [settings, setSettings] = useState(init)
+  const [settings, setSettings] = useState(cookieService.get().settings || init)
   const [confirmed, setConfirmed] = useState(false)
 
   useEffect(() => {

@@ -1,12 +1,15 @@
 import Cookies from 'js-cookie'
-
-const setCookie = (name, value) => Cookies.set(name, value, { expires: 365 })
+import { forEachObjIndexed } from 'ramda'
 
 export const get = () => {
-  const { consented } = Cookies.getJSON()
-  return { consented }
+  const { consented, theme, settings } = Cookies.getJSON()
+  return { consented, theme, settings }
 }
 
-export const set = () => {
-  setCookie('consented', true)
+export const set = (cookies) => {
+  forEachObjIndexed((value, name) => {
+    if (name === 'consented' || get().consented === true) {
+      Cookies.set(name, value, { expires: 365 })
+    }
+  }, cookies)
 }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { equals } from 'ramda'
 
 import { ThemeProvider } from '@material-ui/styles'
 import { createMuiTheme, makeStyles } from '@material-ui/core/styles'
@@ -30,21 +31,24 @@ const createMaterialTheme = (type) => createMuiTheme({
 })
 
 function App() {
-  const [cookies, setCookies] = useState({})
-  const [theme, setTheme] = useState(themes.dark)
+  const [cookies] = useState(cookieService.get())
+  const [theme, setTheme] = useState(cookies.theme || themes.dark)
   const [passage, setPassage] = useState({ withVerseNumbers: '', withoutVerseNumbers: '', query: '' })
   const [passageRef, setPassageRef] = useState(null)
-  const [settings, setSettings] = useState(init)
+  const [settings, setSettings] = useState(cookies.settings || init)
 
   const classes = useStyles(theme)()
 
-  useEffect(() => {
-    setCookies(cookieService.get())
-  }, [setCookies])
+  const setCookies = (consented) => {
+    consented && cookieService.set({ consented: true })
+    cookieService.set({ theme, settings })
+  }
+
+  useEffect(setCookies, [theme, settings])
 
   const toggleTheme = () => {
     setTheme(
-      theme === themes.dark
+      equals(theme, themes.dark)
         ? themes.light
         : themes.dark,
     )
@@ -55,7 +59,7 @@ function App() {
       <ThemeContext.Provider value={theme}>
         <ThemeProvider theme={createMaterialTheme(theme.type)}>
           <div className={classes.app}>
-            <Toggle handleChange={toggleTheme} checked={theme === themes.dark}/>
+            <Toggle handleChange={toggleTheme} checked={equals(theme, themes.dark)}/>
             <Title />
             <Menu
               handleSearch={setPassage}
@@ -64,7 +68,7 @@ function App() {
               handleSettingsChange={setSettings}
             />
             <Passage passage={passage} handlePassageRef={setPassageRef} settings={settings} />
-            <CookieConsent />
+            <CookieConsent handleConsent={() => setCookies(true)} />
           </div>
         </ThemeProvider>
       </ThemeContext.Provider>

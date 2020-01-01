@@ -4,11 +4,11 @@ export const themes = {
   dark: {
     type: 'dark',
     backgroundColor: '#282c34',
-    color: 'white',
+    color: '#f1f2f4',
   },
   light: {
     type: 'light',
-    backgroundColor: 'white',
+    backgroundColor: '#f1f2f4',
     color: '#282c34',
   },
 }

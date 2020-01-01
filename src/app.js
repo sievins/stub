@@ -64,7 +64,7 @@ function App() {
             <Menu
               handleSearch={setPassage}
               passageRef={passageRef}
-              isPassage={Boolean(passage)}
+              isPassage={Boolean(passage.withVerseNumbers)}
               handleSettingsChange={setSettings}
             />
             <Passage passage={passage} handlePassageRef={setPassageRef} settings={settings} />
